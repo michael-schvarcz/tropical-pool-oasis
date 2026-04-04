@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tropical Pool Oasis | Poolside Eats</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;800&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --sand: #F5E6D3;
+    --sand-light: #FBF5EE;
+    --palm: #2D5A3D;
+    --palm-dark: #1A3D28;
+    --sunset: #E8854A;
+    --sunset-glow: #F4A76B;
+    --ocean: #3A8B9E;
+    --night: #1C2B33;
+    --cream: #FFFDF8;
+    --gold: #C9A96E;
+    --text: #2C2C2C;
+    --text-light: #6B6B6B;
+    --red: #D94F4F;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--text);
+    min-height: 100vh;
+  }
+
+  /* Header */
+  .header {
+    background: linear-gradient(170deg, var(--night) 0%, var(--palm-dark) 50%, var(--palm) 100%);
+    padding: 3rem 1.5rem 2.5rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .header::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    right: 0;
+    height: 30px;
+    background: var(--cream);
+    border-radius: 50% 50% 0 0 / 100% 100% 0 0;
+  }
+
+  .header-emoji {
+    font-size: 2.5rem;
+    display: block;
+    margin-bottom: 0.5rem;
+    animation: gentleBob 3s ease-in-out infinite;
+  }
+
+  @keyframes gentleBob {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-6px); }
+  }
+
+  .header h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem;
+    color: var(--cream);
+    font-weight: 700;
+    margin-bottom: 0.25rem;
+  }
+
+  .header-sub {
+    font-size: 0.85rem;
+    color: rgba(255,253,248,0.6);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+
+  /* Main Content */
+  .content {
+    max-width: 480px;
+    margin: 0 auto;
+    padding: 1.5rem;
+  }
+
+  /* Menu Card */
+  .menu-card {
+    background: white;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 4px 30px rgba(0,0,0,0.06);
+    border: 1px solid rgba(201, 169, 110, 0.15);
+    margin-bottom: 1.5rem;
+  }
+
+  .menu-image {
+    width: 100%;
+    height: 220px;
+    background: linear-gradient(135deg, var(--sunset) 0%, var(--sunset-glow) 50%, var(--gold) 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .menu-image::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: radial-gradient(circle at 30% 70%, rgba(255,255,255,0.15) 0%, transparent 50%);
+  }
+
+  .dish-emoji {
+    font-size: 5rem;
+    z-index: 1;
+    filter: drop-shadow(0 4px 8px rgba(0,0,0,0.15));
+  }
+
+  .menu-badge {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    background: var(--palm);
+    color: var(--cream);
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 6px 14px;
+    border-radius: 100px;
+  }
+
+  .menu-body {
+    padding: 1.5rem;
+  }
+
+  .menu-title-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 0.75rem;
+  }
+
+  .menu-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    color: var(--palm-dark);
+    font-weight: 700;
+  }
+
+  .menu-price {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    color: var(--sunset);
+    font-weight: 700;
+    white-space: nowrap;
+  }
+
+  .menu-desc {
+    font-size: 0.95rem;
+    color: var(--text-light);
+    line-height: 1.7;
+    margin-bottom: 1rem;
+  }
+
+  .allergens {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .allergen-tag {
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: var(--red);
+    background: rgba(217, 79, 79, 0.08);
+    border: 1px solid rgba(217, 79, 79, 0.15);
+    border-radius: 100px;
+    padding: 4px 12px;
+  }
+
+  /* Quantity Selector */
+  .quantity-section {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: var(--sand-light);
+    border-radius: 14px;
+    padding: 1rem 1.25rem;
+    margin-bottom: 1rem;
+  }
+
+  .quantity-label {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--text);
+  }
+
+  .quantity-controls {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .qty-btn {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: 2px solid var(--palm);
+    background: transparent;
+    color: var(--palm);
+    font-size: 1.2rem;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+  }
+
+  .qty-btn:hover {
+    background: var(--palm);
+    color: var(--cream);
+  }
+
+  .qty-btn:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+  }
+
+  .qty-btn:disabled:hover {
+    background: transparent;
+    color: var(--palm);
+  }
+
+  .qty-value {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--palm-dark);
+    min-width: 30px;
+    text-align: center;
+  }
+
+  /* Order Total */
+  .order-total {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 0;
+    border-top: 1px solid rgba(0,0,0,0.06);
+    margin-bottom: 1rem;
+  }
+
+  .total-label {
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--text-light);
+  }
+
+  .total-amount {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--palm-dark);
+  }
+
+  /* Order Button */
+  .order-btn {
+    width: 100%;
+    padding: 1rem;
+    background: var(--palm);
+    color: var(--cream);
+    border: none;
+    border-radius: 14px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    letter-spacing: 0.03em;
+  }
+
+  .order-btn:hover {
+    background: var(--palm-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(45, 90, 61, 0.25);
+  }
+
+  .order-btn:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+  }
+
+  /* Coming Soon Overlay */
+  .coming-soon-banner {
+    background: linear-gradient(135deg, var(--sunset), var(--sunset-glow));
+    color: white;
+    text-align: center;
+    padding: 1rem;
+    border-radius: 14px;
+    margin-bottom: 1.5rem;
+  }
+
+  .coming-soon-banner h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    margin-bottom: 0.25rem;
+  }
+
+  .coming-soon-banner p {
+    font-size: 0.85rem;
+    opacity: 0.9;
+  }
+
+  /* Info Note */
+  .info-note {
+    text-align: center;
+    padding: 1.5rem;
+    font-size: 0.85rem;
+    color: var(--text-light);
+    line-height: 1.6;
+  }
+
+  .info-note a {
+    color: var(--sunset);
+    text-decoration: none;
+    font-weight: 500;
+  }
+
+  /* Success State */
+  .order-success {
+    display: none;
+    text-align: center;
+    padding: 2rem;
+  }
+
+  .order-success.show { display: block; }
+
+  .order-success .check-icon {
+    font-size: 3.5rem;
+    display: block;
+    margin-bottom: 1rem;
+  }
+
+  .order-success h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    color: var(--palm-dark);
+    margin-bottom: 0.5rem;
+  }
+
+  .order-success p {
+    font-size: 0.95rem;
+    color: var(--text-light);
+    line-height: 1.6;
+  }
+
+  /* Footer */
+  .footer {
+    text-align: center;
+    padding: 2rem 1.5rem;
+    font-size: 0.75rem;
+    color: var(--text-light);
+  }
+
+  .footer a {
+    color: var(--sunset);
+    text-decoration: none;
+  }
+
+  /* Prep time indicator */
+  .prep-time {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.8rem;
+    color: var(--text-light);
+    background: var(--sand-light);
+    padding: 4px 12px;
+    border-radius: 100px;
+    margin-bottom: 1rem;
+  }
+</style>
+</head>
+<body>
+
+<!-- Header -->
+<div class="header">
+  <span class="header-emoji">🔥🥢</span>
+  <h1>Poolside Eats</h1>
+  <p class="header-sub">Tropical Pool Oasis</p>
+</div>
+
+<!-- Content -->
+<div class="content">
+
+  <!-- Live! -->
+
+  <!-- Menu Card -->
+  <div class="menu-card" id="menu-card">
+    <div class="menu-image">
+      <span class="dish-emoji">🔥🥢</span>
+      <span class="menu-badge">Homemade</span>
+    </div>
+
+    <div class="menu-body">
+      <div class="menu-title-row">
+        <h2 class="menu-title">Mi Goreng</h2>
+        <span class="menu-price">$10</span>
+      </div>
+
+      <p class="menu-desc">Authentic Indonesian stir-fried noodles made fresh poolside by your host. Sweet, savory, and a little spicy — a taste of the islands right here in Tucson.</p>
+
+      <div class="prep-time">
+        <span>⏱️</span> Fresh made to order · ~15 min
+      </div>
+
+      <div class="allergens">
+        <span class="allergen-tag">⚠️ Eggs</span>
+        <span class="allergen-tag">⚠️ Soy</span>
+        <span class="allergen-tag">⚠️ Gluten</span>
+      </div>
+
+      <!-- Quantity -->
+      <div class="quantity-section">
+        <span class="quantity-label">How many plates?</span>
+        <div class="quantity-controls">
+          <button class="qty-btn" id="qty-minus" onclick="updateQty(-1)" disabled>−</button>
+          <span class="qty-value" id="qty-value">1</span>
+          <button class="qty-btn" id="qty-plus" onclick="updateQty(1)">+</button>
+        </div>
+      </div>
+
+      <!-- Total -->
+      <div class="order-total">
+        <span class="total-label">Total</span>
+        <span class="total-amount" id="total-amount">$10.00</span>
+      </div>
+
+      <button class="order-btn" id="order-btn" onclick="placeOrder()">
+        Order Now — Pay with Stripe
+      </button>
+    </div>
+  </div>
+
+  <!-- Order Success (hidden) -->
+  <div class="order-success" id="order-success">
+    <span class="check-icon">🎉</span>
+    <h2>Order Placed!</h2>
+    <p>Your Mi Goreng is being prepared fresh. Michael will bring it out to the pool area in about 15 minutes. Enjoy!</p>
+  </div>
+
+  <!-- Info -->
+  <div class="info-note">
+    <p>Made with love by your host Michael 🌴<br>
+    <a href="https://tropical-pool-oasis.vercel.app">← Back to Guest Info</a></p>
+  </div>
+
+</div>
+
+<!-- Footer -->
+<div class="footer">
+  <p>🌴 Tropical Pool Oasis · Tucson, AZ</p>
+  <p style="margin-top: 4px;">Hosted on <a href="https://swimply.com">Swimply</a></p>
+</div>
+
+<script>
+  const PRICE = 10;
+  let quantity = 1;
+
+  function updateQty(change) {
+    quantity = Math.max(1, Math.min(20, quantity + change));
+    document.getElementById('qty-value').textContent = quantity;
+    document.getElementById('total-amount').textContent = '$' + (quantity * PRICE).toFixed(2);
+    document.getElementById('qty-minus').disabled = quantity <= 1;
+    document.getElementById('qty-plus').disabled = quantity >= 20;
+  }
+
+  const STRIPE_LINK = 'https://buy.stripe.com/5kQ3cuful2YP1OKe9LeIw00';
+
+  function placeOrder() {
+    const btn = document.getElementById('order-btn');
+    btn.textContent = 'Redirecting to payment...';
+    btn.disabled = true;
+
+    // Stripe payment links support ?quantity= parameter
+    const url = STRIPE_LINK + '?quantity=' + quantity;
+    window.location.href = url;
+  }
+</script>
+
+</body>
+</html>
