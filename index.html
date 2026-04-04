@@ -1,0 +1,850 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tropical Pool Oasis | Guest Experience</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --sand: #F5E6D3;
+    --sand-light: #FBF5EE;
+    --palm: #2D5A3D;
+    --palm-dark: #1A3D28;
+    --sunset: #E8854A;
+    --sunset-glow: #F4A76B;
+    --ocean: #3A8B9E;
+    --ocean-light: #5CB8C9;
+    --night: #1C2B33;
+    --cream: #FFFDF8;
+    --gold: #C9A96E;
+    --text: #2C2C2C;
+    --text-light: #6B6B6B;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--text);
+    overflow-x: hidden;
+  }
+
+  /* Hero Section */
+  .hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background: linear-gradient(170deg, var(--night) 0%, var(--palm-dark) 35%, var(--sunset) 65%, var(--sunset-glow) 85%, var(--sand) 100%);
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: radial-gradient(ellipse at 70% 20%, rgba(248, 180, 100, 0.3) 0%, transparent 50%),
+                radial-gradient(ellipse at 30% 80%, rgba(58, 139, 158, 0.2) 0%, transparent 40%);
+    pointer-events: none;
+  }
+
+  .palm-left, .palm-right {
+    position: absolute;
+    bottom: 0;
+    font-size: clamp(80px, 15vw, 200px);
+    opacity: 0.15;
+    z-index: 1;
+    user-select: none;
+  }
+  .palm-left { left: -20px; transform: scaleX(-1); }
+  .palm-right { right: -20px; }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    padding: 2rem;
+    animation: fadeUp 1.2s ease-out;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(40px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .hero-emoji {
+    font-size: clamp(40px, 8vw, 72px);
+    margin-bottom: 1rem;
+    display: block;
+    animation: gentleBob 3s ease-in-out infinite;
+  }
+
+  @keyframes gentleBob {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+  }
+
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.2rem, 6vw, 4.5rem);
+    color: var(--cream);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+    margin-bottom: 0.5rem;
+    text-shadow: 0 2px 20px rgba(0,0,0,0.2);
+  }
+
+  .hero-sub {
+    font-family: 'DM Sans', sans-serif;
+    font-size: clamp(0.95rem, 2vw, 1.25rem);
+    color: rgba(255,253,248,0.8);
+    font-weight: 300;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 2rem;
+  }
+
+  .hero-tagline {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: clamp(1rem, 2.5vw, 1.4rem);
+    color: var(--sand);
+    max-width: 500px;
+    margin: 0 auto 2.5rem;
+    line-height: 1.6;
+  }
+
+  .scroll-hint {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: rgba(255,253,248,0.5);
+    font-size: 0.8rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    animation: pulse 2s ease-in-out infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 0.4; }
+    50% { opacity: 0.8; }
+  }
+
+  .scroll-hint span {
+    display: block;
+    margin-top: 8px;
+    font-size: 1.2rem;
+    animation: bounce 2s ease-in-out infinite;
+  }
+
+  @keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(6px); }
+  }
+
+  /* Section Base */
+  section {
+    padding: clamp(3rem, 8vw, 6rem) clamp(1.5rem, 5vw, 4rem);
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .section-label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--sunset);
+    margin-bottom: 0.75rem;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    color: var(--palm-dark);
+    margin-bottom: 1.5rem;
+    line-height: 1.2;
+  }
+
+  /* Info Cards */
+  .info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+  }
+
+  .info-card {
+    background: var(--sand-light);
+    border-radius: 16px;
+    padding: 2rem;
+    border: 1px solid rgba(201, 169, 110, 0.15);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .info-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px rgba(0,0,0,0.08);
+  }
+
+  .info-card-icon {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    display: block;
+  }
+
+  .info-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    color: var(--palm-dark);
+    margin-bottom: 0.75rem;
+  }
+
+  .info-card p {
+    font-size: 0.95rem;
+    color: var(--text-light);
+    line-height: 1.7;
+  }
+
+  /* Amenities */
+  .amenities-strip {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-top: 2rem;
+  }
+
+  .amenity-tag {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: white;
+    border: 1px solid rgba(201, 169, 110, 0.25);
+    border-radius: 100px;
+    padding: 0.6rem 1.25rem;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--palm-dark);
+    transition: all 0.3s ease;
+  }
+
+  .amenity-tag:hover {
+    background: var(--palm-dark);
+    color: var(--cream);
+    border-color: var(--palm-dark);
+  }
+
+  .amenity-tag span { font-size: 1.1rem; }
+
+  /* Speaker Steps */
+  .steps-container {
+    margin-top: 2rem;
+    counter-reset: steps;
+  }
+
+  .step {
+    display: flex;
+    gap: 1.25rem;
+    align-items: flex-start;
+    padding: 1.25rem 0;
+    border-bottom: 1px solid rgba(0,0,0,0.06);
+  }
+
+  .step:last-child { border-bottom: none; }
+
+  .step-number {
+    flex-shrink: 0;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: var(--palm);
+    color: var(--cream);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    font-size: 0.85rem;
+  }
+
+  .step-content h4 {
+    font-weight: 600;
+    font-size: 1rem;
+    margin-bottom: 0.25rem;
+    color: var(--palm-dark);
+  }
+
+  .step-content p {
+    font-size: 0.9rem;
+    color: var(--text-light);
+    line-height: 1.6;
+  }
+
+  /* Rules Section */
+  .rules-section {
+    background: var(--sand-light);
+    border-radius: 20px;
+    padding: clamp(2rem, 5vw, 3.5rem);
+    margin: 2rem 0;
+    border: 1px solid rgba(201, 169, 110, 0.2);
+  }
+
+  .rules-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-top: 1.5rem;
+  }
+
+  @media (max-width: 600px) {
+    .rules-grid { grid-template-columns: 1fr; }
+  }
+
+  .rule-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 0.95rem;
+    color: var(--text);
+    padding: 0.5rem 0;
+  }
+
+  .rule-icon { font-size: 1.2rem; }
+
+  /* Guest Book */
+  .guestbook-section {
+    background: linear-gradient(175deg, var(--palm-dark) 0%, var(--night) 100%);
+    padding: clamp(3rem, 8vw, 6rem) clamp(1.5rem, 5vw, 4rem);
+    margin: 0;
+    max-width: 100%;
+  }
+
+  .guestbook-inner {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .guestbook-section .section-label { color: var(--sunset-glow); }
+  .guestbook-section .section-title { color: var(--cream); }
+
+  .guestbook-entries {
+    display: grid;
+    gap: 1.5rem;
+    margin: 2rem 0;
+  }
+
+  .guestbook-entry {
+    background: rgba(255,253,248,0.08);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,253,248,0.1);
+    border-radius: 16px;
+    padding: 1.75rem;
+    transition: transform 0.3s ease;
+  }
+
+  .guestbook-entry:hover {
+    transform: translateY(-2px);
+  }
+
+  .entry-stars {
+    color: var(--gold);
+    font-size: 0.9rem;
+    letter-spacing: 2px;
+    margin-bottom: 0.75rem;
+  }
+
+  .entry-text {
+    font-size: 1rem;
+    color: rgba(255,253,248,0.85);
+    line-height: 1.7;
+    font-style: italic;
+    margin-bottom: 1rem;
+  }
+
+  .entry-author {
+    font-size: 0.85rem;
+    color: var(--sunset-glow);
+    font-weight: 500;
+  }
+
+  /* Guestbook Form */
+  .guestbook-form {
+    background: rgba(255,253,248,0.06);
+    border: 1px solid rgba(255,253,248,0.1);
+    border-radius: 16px;
+    padding: 2rem;
+    margin-top: 2rem;
+  }
+
+  .guestbook-form h3 {
+    font-family: 'Playfair Display', serif;
+    color: var(--cream);
+    font-size: 1.3rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .form-group {
+    margin-bottom: 1rem;
+  }
+
+  .form-group label {
+    display: block;
+    color: rgba(255,253,248,0.6);
+    font-size: 0.8rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 0.4rem;
+  }
+
+  .form-group input,
+  .form-group textarea {
+    width: 100%;
+    padding: 0.85rem 1rem;
+    border: 1px solid rgba(255,253,248,0.15);
+    border-radius: 10px;
+    background: rgba(255,253,248,0.05);
+    color: var(--cream);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.95rem;
+    outline: none;
+    transition: border-color 0.3s;
+  }
+
+  .form-group input:focus,
+  .form-group textarea:focus {
+    border-color: var(--sunset-glow);
+  }
+
+  .form-group textarea { resize: vertical; min-height: 100px; }
+
+  .form-group input::placeholder,
+  .form-group textarea::placeholder {
+    color: rgba(255,253,248,0.3);
+  }
+
+  .star-rating {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .star-rating span {
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: transform 0.2s;
+    filter: grayscale(1) opacity(0.4);
+  }
+
+  .star-rating span.active {
+    filter: none;
+    transform: scale(1.15);
+  }
+
+  .submit-btn {
+    background: var(--sunset);
+    color: var(--cream);
+    border: none;
+    border-radius: 100px;
+    padding: 0.85rem 2.5rem;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    letter-spacing: 0.05em;
+  }
+
+  .submit-btn:hover {
+    background: var(--sunset-glow);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(232, 133, 74, 0.3);
+  }
+
+  .form-success {
+    display: none;
+    text-align: center;
+    padding: 2rem;
+    color: var(--cream);
+  }
+
+  .form-success.show { display: block; }
+  .form-success .check { font-size: 3rem; margin-bottom: 1rem; display: block; }
+  .form-success p { color: rgba(255,253,248,0.7); }
+
+  /* Contact */
+  .contact-bar {
+    background: var(--sand);
+    text-align: center;
+    padding: 3rem 2rem;
+  }
+
+  .contact-bar p {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+    color: var(--palm-dark);
+    margin-bottom: 0.5rem;
+  }
+
+  .contact-bar .contact-sub {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.95rem;
+    color: var(--text-light);
+    font-weight: 300;
+  }
+
+  /* Footer */
+  footer {
+    text-align: center;
+    padding: 2rem;
+    font-size: 0.8rem;
+    color: var(--text-light);
+    background: var(--cream);
+  }
+
+  footer a {
+    color: var(--sunset);
+    text-decoration: none;
+  }
+
+  /* QR placeholder */
+  .qr-box {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    background: white;
+    border-radius: 16px;
+    padding: 1.5rem;
+    margin-top: 1rem;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+  }
+
+  .qr-placeholder {
+    width: 150px;
+    height: 150px;
+    background: #f0f0f0;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+    color: #999;
+    margin-bottom: 0.75rem;
+  }
+
+  .qr-label {
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--palm-dark);
+  }
+
+  /* Divider */
+  .wave-divider {
+    height: 60px;
+    background: var(--cream);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .wave-divider::before {
+    content: '〰️〰️〰️〰️〰️〰️〰️〰️';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 1.5rem;
+    opacity: 0.15;
+    white-space: nowrap;
+  }
+</style>
+</head>
+<body>
+
+<!-- Hero -->
+<div class="hero">
+  <div class="palm-left">🌴</div>
+  <div class="palm-right">🌴</div>
+  <div class="hero-content">
+    <span class="hero-emoji">🌴🌅</span>
+    <h1>Tropical Pool Oasis</h1>
+    <p class="hero-sub">Tucson, Arizona &bull; Golf Club Community</p>
+    <p class="hero-tagline">Your private poolside escape with cabanas, string lights, and sunset vibes</p>
+  </div>
+  <div class="scroll-hint">
+    Scroll to explore
+    <span>↓</span>
+  </div>
+</div>
+
+<!-- Welcome -->
+<section>
+  <p class="section-label">Welcome</p>
+  <h2 class="section-title">Everything You Need for a Perfect Day</h2>
+  <p style="font-size: 1.05rem; color: var(--text-light); line-height: 1.8; max-width: 680px;">
+    We're so glad you're here. This page has everything you need to make the most of your time at our pool. From parking to WiFi to the Bluetooth speaker — we've got you covered. Enjoy the oasis.
+  </p>
+
+  <div class="info-grid">
+    <div class="info-card">
+      <span class="info-card-icon">🌴🌅</span>
+      <h3>Pool Access</h3>
+      <p>Please use the side gate to access the pool area. I'll send you the community gate code the morning of your booking.</p>
+    </div>
+    <div class="info-card">
+      <span class="info-card-icon">🅿️</span>
+      <h3>Parking</h3>
+      <p>3 cars fit in the driveway, plus a few more in front. Two guest parking lots are nearby in the community. All curbs are OK except those painted red.</p>
+    </div>
+    <div class="info-card">
+      <span class="info-card-icon">🧊</span>
+      <h3>Cooler</h3>
+      <p>We have one medium-sized cooler available. Bring your own ice, drinks, and snacks to load it up.</p>
+    </div>
+    <div class="info-card">
+      <span class="info-card-icon">🚻</span>
+      <h3>Restroom</h3>
+      <p>A private portable restroom is available right by the pool area. Stocked with sanitizer, wipes, and everything you need.</p>
+    </div>
+  </div>
+</section>
+
+<div class="wave-divider"></div>
+
+<!-- Amenities -->
+<section>
+  <p class="section-label">What's Included</p>
+  <h2 class="section-title">Amenities</h2>
+
+  <div class="amenities-strip">
+    <div class="amenity-tag"><span>🏊</span> Full-Size Pool</div>
+    <div class="amenity-tag"><span>🎪</span> Cabanas</div>
+    <div class="amenity-tag"><span>✨</span> String Lights</div>
+    <div class="amenity-tag"><span>🌊</span> Waterfall</div>
+    <div class="amenity-tag"><span>🔥</span> Fire Pit</div>
+    <div class="amenity-tag"><span>🍖</span> Grill</div>
+    <div class="amenity-tag"><span>📶</span> WiFi</div>
+    <div class="amenity-tag"><span>🔊</span> Bluetooth Speaker</div>
+    <div class="amenity-tag"><span>🎯</span> Corn Hole</div>
+    <div class="amenity-tag"><span>🏓</span> Ping Pong</div>
+    <div class="amenity-tag"><span>🏖️</span> Towels Provided</div>
+    <div class="amenity-tag"><span>💡</span> Night Lighting</div>
+  </div>
+</section>
+
+<div class="wave-divider"></div>
+
+<!-- WiFi -->
+<section>
+  <p class="section-label">Stay Connected</p>
+  <h2 class="section-title">WiFi Access</h2>
+  <p style="font-size: 1rem; color: var(--text-light); line-height: 1.7; margin-bottom: 1rem;">
+    Scan the QR code below with your phone camera to instantly connect to our WiFi network.
+  </p>
+  <div class="qr-box">
+    <div class="qr-placeholder">Your QR Code Here</div>
+    <span class="qr-label">Scan to Connect</span>
+  </div>
+</section>
+
+<div class="wave-divider"></div>
+
+<!-- Speaker -->
+<section>
+  <p class="section-label">Your Playlist, Your Vibe</p>
+  <h2 class="section-title">Bluetooth Speaker Setup</h2>
+  <p style="font-size: 1rem; color: var(--text-light); line-height: 1.7;">
+    Connect to our VOCBOOM speaker in a few simple steps:
+  </p>
+
+  <div class="steps-container">
+    <div class="step">
+      <div class="step-number">1</div>
+      <div class="step-content">
+        <h4>Power On</h4>
+        <p>Long press the Power button (~3 seconds) until you hear a startup chime or see the LED begin to flash.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-number">2</div>
+      <div class="step-content">
+        <h4>Enter Pairing Mode</h4>
+        <p>Long press the Play/Pause button to activate Bluetooth pairing.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-number">3</div>
+      <div class="step-content">
+        <h4>Search on Your Device</h4>
+        <p>Open Bluetooth settings on your phone, tablet, or computer and scan for new devices.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-number">4</div>
+      <div class="step-content">
+        <h4>Select the Speaker</h4>
+        <p>Look for <strong>"VOCBOOM"</strong> in the list and tap to connect.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-number">5</div>
+      <div class="step-content">
+        <h4>Confirmation</h4>
+        <p>You'll hear a beep and the LED indicator will turn solid blue. You're all set!</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="wave-divider"></div>
+
+<!-- House Rules -->
+<section>
+  <div class="rules-section">
+    <p class="section-label">Good Vibes Only</p>
+    <h2 class="section-title">House Rules</h2>
+
+    <div class="rules-grid">
+      <div class="rule-item"><span class="rule-icon">✅</span> Alcohol welcome</div>
+      <div class="rule-item"><span class="rule-icon">✅</span> Smoking allowed</div>
+      <div class="rule-item"><span class="rule-icon">✅</span> Parties welcome</div>
+      <div class="rule-item"><span class="rule-icon">✅</span> Loud music OK</div>
+      <div class="rule-item"><span class="rule-icon">✅</span> Pets in pool</div>
+      <div class="rule-item"><span class="rule-icon">✅</span> All ages welcome</div>
+      <div class="rule-item"><span class="rule-icon">❌</span> No third-party vendors</div>
+      <div class="rule-item"><span class="rule-icon">❌</span> No commercial use</div>
+      <div class="rule-item"><span class="rule-icon">❌</span> No glass near pool</div>
+      <div class="rule-item"><span class="rule-icon">🕐</span> Please leave on time</div>
+    </div>
+  </div>
+</section>
+
+<!-- Guest Book -->
+<div class="guestbook-section">
+  <div class="guestbook-inner">
+    <p class="section-label">Guest Book</p>
+    <h2 class="section-title">What People Are Saying</h2>
+
+    <div class="guestbook-entries" id="guestbook-entries">
+      <div class="guestbook-entry">
+        <div class="entry-stars">★★★★★</div>
+        <p class="entry-text">"Be our first guest to leave a review! We can't wait to hear about your experience."</p>
+        <span class="entry-author">— Your Hosts, Michael & Family</span>
+      </div>
+    </div>
+
+    <div class="guestbook-form" id="guestbook-form">
+      <h3>Leave Your Mark ✍️</h3>
+
+      <div class="form-group">
+        <label>Your Name</label>
+        <input type="text" id="guest-name" placeholder="First name or initials">
+      </div>
+
+      <div class="form-group">
+        <label>Rating</label>
+        <div class="star-rating" id="star-rating">
+          <span data-value="1">⭐</span>
+          <span data-value="2">⭐</span>
+          <span data-value="3">⭐</span>
+          <span data-value="4">⭐</span>
+          <span data-value="5">⭐</span>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Your Experience</label>
+        <textarea id="guest-message" placeholder="Tell us about your day at the Tropical Pool Oasis..."></textarea>
+      </div>
+
+      <button class="submit-btn" onclick="submitEntry()">Submit Review</button>
+    </div>
+
+    <div class="form-success" id="form-success">
+      <span class="check">🌺</span>
+      <h3 style="font-family: 'Playfair Display', serif; color: var(--cream); margin-bottom: 0.5rem;">Mahalo!</h3>
+      <p>Thank you for sharing your experience. We hope to see you again soon!</p>
+    </div>
+  </div>
+</div>
+
+<!-- Contact -->
+<div class="contact-bar">
+  <p>Need anything? Don't hesitate to reach out.</p>
+  <span class="contact-sub">Your host Michael is here to make sure you have an amazing time.</span>
+</div>
+
+<!-- Footer -->
+<footer>
+  <p>🌴 Tropical Pool Oasis &bull; Tucson, Arizona &bull; Hosted with ❤️ by Michael</p>
+  <p style="margin-top: 0.5rem;">Book on <a href="https://swimply.com" target="_blank">Swimply</a></p>
+</footer>
+
+<script>
+  // Star Rating
+  let selectedRating = 0;
+  document.querySelectorAll('#star-rating span').forEach(star => {
+    star.addEventListener('click', function() {
+      selectedRating = parseInt(this.dataset.value);
+      document.querySelectorAll('#star-rating span').forEach((s, i) => {
+        s.classList.toggle('active', i < selectedRating);
+      });
+    });
+  });
+
+  // Submit Guestbook Entry
+  function submitEntry() {
+    const name = document.getElementById('guest-name').value.trim();
+    const message = document.getElementById('guest-message').value.trim();
+
+    if (!name || !message || selectedRating === 0) {
+      alert('Please fill in your name, rating, and experience!');
+      return;
+    }
+
+    const stars = '★'.repeat(selectedRating) + '☆'.repeat(5 - selectedRating);
+
+    const entry = document.createElement('div');
+    entry.className = 'guestbook-entry';
+    entry.innerHTML = `
+      <div class="entry-stars">${stars}</div>
+      <p class="entry-text">"${message}"</p>
+      <span class="entry-author">— ${name}</span>
+    `;
+
+    const entries = document.getElementById('guestbook-entries');
+    entries.insertBefore(entry, entries.firstChild);
+
+    document.getElementById('guestbook-form').style.display = 'none';
+    document.getElementById('form-success').classList.add('show');
+
+    // Save to localStorage backup
+    try {
+      const saved = JSON.parse(localStorage.getItem('guestbook') || '[]');
+      saved.unshift({ name, message, rating: selectedRating, date: new Date().toISOString() });
+      localStorage.setItem('guestbook', JSON.stringify(saved));
+    } catch(e) {}
+  }
+
+  // Load saved entries
+  try {
+    const saved = JSON.parse(localStorage.getItem('guestbook') || '[]');
+    const entries = document.getElementById('guestbook-entries');
+    saved.forEach(item => {
+      const stars = '★'.repeat(item.rating) + '☆'.repeat(5 - item.rating);
+      const entry = document.createElement('div');
+      entry.className = 'guestbook-entry';
+      entry.innerHTML = `
+        <div class="entry-stars">${stars}</div>
+        <p class="entry-text">"${item.message}"</p>
+        <span class="entry-author">— ${item.name}</span>
+      `;
+      entries.insertBefore(entry, entries.firstChild);
+    });
+  } catch(e) {}
+</script>
+
+</body>
+</html>
