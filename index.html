@@ -145,7 +145,7 @@
     <a class="tile" href="poolside-eats.html">
       <span class="ic"><svg viewBox="0 0 24 24"><path d="M4 15a8 8 0 0 1 16 0"/><path d="M2 15h20"/><path d="M7 15c0 3 2 5 5 5s5-2 5-5"/><path d="M9 7c1-1.5 5-1.5 6 0"/></svg></span>
       <b>Poolside Eats</b>
-      <small>order to your cabana</small>
+      <small id="eats-tile-note">order to your cabana</small>
     </a>
     <a class="tile" href="#hosts" onclick="openSec('hosts')">
       <span class="ic"><svg viewBox="0 0 24 24"><path d="M21 11.5c0 4.1-4 7.5-9 7.5-1 0-2-.13-2.9-.38L4 20l1.3-3.4C3.9 15.3 3 13.5 3 11.5 3 7.4 7 4 12 4s9 3.4 9 7.5z"/></svg></span>
@@ -200,8 +200,9 @@
         <h2>Poolside Eats</h2><span class="chev">›</span>
       </summary>
       <div class="body">
+        <div id="eats-closed-note" style="display:none;background:var(--plum-soft);color:var(--plum);border-radius:10px;padding:12px 14px;margin-bottom:12px;font-style:italic"></div>
         <p>Our rotating poolside menu — now serving fresh <b>Indonesian Fried Noodles</b> <i>(mi goreng)</i>, made to order and delivered to your cabana with a fried egg, crispy onions, and cool tomato &amp; cucumber.</p>
-        <a class="btn alt" href="poolside-eats.html">View the menu &amp; order</a>
+        <a class="btn alt" id="eats-menu-btn" href="poolside-eats.html">View the menu &amp; order</a>
       </div>
     </details>
 
@@ -262,6 +263,21 @@
       setTimeout(()=>{btn.textContent='Copy'; btn.classList.remove('copied')},2000);
     });
   }
+  fetch('status.json?t=' + Date.now())
+    .then(r => r.json())
+    .then(s => {
+      if (!s.eatsOpen) {
+        document.getElementById('eats-tile-note').textContent = 'not available today';
+        const note = document.getElementById('eats-closed-note');
+        note.textContent = s.closedMessage || 'Poolside Eats is not available today.';
+        note.style.display = 'block';
+        const btn = document.getElementById('eats-menu-btn');
+        btn.textContent = 'Ordering paused today';
+        btn.style.opacity = '.55';
+        btn.removeAttribute('href');
+      }
+    }).catch(()=>{});
+
   function openSec(id){
     const d=document.getElementById(id);
     if(d){d.open=true;}
