@@ -6,6 +6,11 @@
 <title>Oasis Connect · Tropical Pool Oasis</title>
 <meta name="description" content="Your poolside hub — Wi-Fi, speaker, Poolside Eats, and everything for your visit.">
 <meta name="theme-color" content="#F8F4EC">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="icon" type="image/png" href="apple-touch-icon.png">
+<meta name="apple-mobile-web-app-title" content="Oasis Connect">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&display=swap" rel="stylesheet">
@@ -130,7 +135,7 @@
     <a class="tile" href="#wifi" onclick="openSec('wifi')">
       <span class="ic"><svg viewBox="0 0 24 24"><path d="M2 9.5C7.5 4.5 16.5 4.5 22 9.5"/><path d="M5.5 13c3.8-3.3 9.2-3.3 13 0"/><path d="M9 16.5c1.8-1.5 4.2-1.5 6 0"/><circle cx="12" cy="19.5" r="1" fill="currentColor"/></svg></span>
       <b>Join the Wi-Fi</b>
-      <small>one tap, no typing</small>
+      <small>scan or copy the password</small>
     </a>
     <a class="tile" href="#speaker" onclick="openSec('speaker')">
       <span class="ic"><svg viewBox="0 0 24 24"><rect x="7" y="3" width="10" height="18" rx="2.5"/><circle cx="12" cy="15" r="3"/><circle cx="12" cy="8" r="1" fill="currentColor"/></svg></span>
@@ -158,6 +163,10 @@
         <h2>Wi-Fi</h2><span class="chev">›</span>
       </summary>
       <div class="body">
+        <p><b>Fastest way:</b> open your phone's camera and point it at this code — tap the banner that pops up and you're connected.</p>
+        <img class="wifi-qr" src="wifi-qr.png" alt="Scan to join the Wi-Fi">
+        <p class="qr-note" style="margin-bottom:16px">scan with your camera app, not this page</p>
+        <p><b>Or join by hand</b> — copy the password below, then pick Oasis WiFi in your phone's Wi-Fi settings and paste:</p>
         <div class="cred">
           <div><span class="label">Network</span><span class="val">Oasis WiFi</span></div>
           <button class="copy" onclick="copyIt(this,'Oasis WiFi')">Copy</button>
@@ -166,8 +175,6 @@
           <div><span class="label">Password</span><span class="val">SelamatSwim!</span></div>
           <button class="copy" onclick="copyIt(this,'SelamatSwim!')">Copy</button>
         </div>
-        <img class="wifi-qr" src="wifi-qr.png" alt="Scan to join the Wi-Fi">
-        <p class="qr-note">or point your camera here to join instantly</p>
       </div>
     </details>
 
@@ -207,8 +214,8 @@
       <div class="body">
         <p><span class="label">Getting In</span>Enter through the <b>side gate at the house</b> — it's the only guest entrance. Please don't go through the home.</p>
         <p><span class="label">Community Gate</span>Your gate code is sent in your Swimply booking messages before arrival.</p>
-        <p><span class="label">Parking</span>Park in the driveway and along the street directly in front of the house. Room for up to fifteen cars.</p>
-        <p><span class="label">Cooler</span>A cooler is set out for you — bring your own ice and drinks.</p>
+        <p><span class="label">Parking</span>Park in the driveway and along the street in front of the house — anywhere is fine except <b>red curbs</b>. Overflow guest parking is just down the street. Room for up to fifteen cars.</p>
+        <p><span class="label">Cooler &amp; Table</span>A large cooler is set out for you — bring your own ice and drinks. A foldable table is also available if you need extra serving or party space; just ask.</p>
       </div>
     </details>
 
@@ -235,8 +242,7 @@
         <h2>Message Your Hosts</h2><span class="chev">›</span>
       </summary>
       <div class="body">
-        <p>Need anything during your visit? Message us anytime through the <b>Swimply app</b> — we typically reply within the hour.</p>
-        <a class="btn" href="https://swimply.com/inbox">Open Swimply messages</a>
+        <p>Need anything during your visit? Message us anytime in the <b>Swimply app</b> — open the app, tap <b>Inbox</b>, and find your booking with Novi &amp; Mike. We typically reply within the hour.</p>
       </div>
     </details>
 
