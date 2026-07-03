@@ -165,17 +165,22 @@
       state.announcement = $('announce').value.trim();
       const bytes = new TextEncoder().encode(JSON.stringify(state, null, 2));
       let bin = ''; bytes.forEach(b => bin += String.fromCharCode(b));
-      const out = await gh('PUT', {
-        message: 'Host panel update',
-        content: btoa(bin),
-        sha: sha
-      });
+      let out;
+      try {
+        out = await gh('PUT', { message: 'Host panel update', content: btoa(bin), sha: sha });
+      } catch(e) {
+        if (e.message === '409' || e.message === '422') {
+          const fresh = await gh('GET');
+          sha = fresh.sha;
+          out = await gh('PUT', { message: 'Host panel update', content: btoa(bin), sha: sha });
+        } else { throw e; }
+      }
       sha = out.content.sha;
       $('status-msg').textContent = 'Published ✓ — live on the guest site in about a minute';
     }catch(e){
       $('status-msg').textContent = e.message === '401' ?
         'Token rejected — tap "forget token" below and paste a fresh one' :
-        'Something went wrong — check your connection and try again';
+        'Publish failed (' + e.message + ') — refresh this page and try again';
     }
     btn.disabled = false; btn.textContent = 'Publish changes';
   }
