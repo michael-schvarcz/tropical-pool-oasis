@@ -100,6 +100,8 @@
     <div class="rule"><span></span></div>
   </header>
 
+  <div id="closed-banner" style="display:none;background:var(--plum);color:var(--cream);border-radius:14px;padding:16px 18px;text-align:center;margin-top:26px;font-style:italic"></div>
+
   <div class="card">
     <div style="text-align:center;margin-bottom:14px">
       <span style="display:inline-block;background:var(--plum);color:var(--cream);border-radius:999px;padding:6px 18px;font-size:12px;letter-spacing:.28em;text-transform:uppercase">Now Serving</span>
@@ -162,7 +164,23 @@
     document.getElementById('total-amount').textContent = '$' + (quantity * PRICE).toFixed(2);
   }
 
+  let eatsOpen = true;
+  fetch('status.json?t=' + Date.now())
+    .then(r => r.json())
+    .then(s => {
+      if (!s.eatsOpen) {
+        eatsOpen = false;
+        const b = document.getElementById('closed-banner');
+        b.textContent = s.closedMessage || 'Poolside Eats is not available today.';
+        b.style.display = 'block';
+        const btn = document.getElementById('order-btn');
+        btn.textContent = 'Ordering paused today';
+        btn.disabled = true;
+      }
+    }).catch(()=>{});
+
   function placeOrder(){
+    if (!eatsOpen) return;
     const btn = document.getElementById('order-btn');
     btn.textContent = 'Taking you to checkout…';
     btn.disabled = true;
