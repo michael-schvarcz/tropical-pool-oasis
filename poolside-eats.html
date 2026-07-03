@@ -2,498 +2,167 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Tropical Pool Oasis | Poolside Eats</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;800&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Poolside Eats · Tropical Pool Oasis</title>
+<meta name="description" content="Fresh Mi Goreng made to order, delivered to your cabana.">
+<meta name="theme-color" content="#F8F4EC">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="icon" type="image/png" href="apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --sand: #F5E6D3;
-    --sand-light: #FBF5EE;
-    --palm: #2D5A3D;
-    --palm-dark: #1A3D28;
-    --sunset: #E8854A;
-    --sunset-glow: #F4A76B;
-    --ocean: #3A8B9E;
-    --night: #1C2B33;
-    --cream: #FFFDF8;
-    --gold: #C9A96E;
-    --text: #2C2C2C;
-    --text-light: #6B6B6B;
-    --red: #D94F4F;
+  :root{
+    --cream:#F8F4EC; --ink:#373D34; --sage:#8C9D84; --plum:#8A6779;
+    --sage-soft:#E4E9E0; --plum-soft:#EFE6EB; --card:#FDFBF6;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+  body{
+    background:var(--cream); color:var(--ink);
+    font-family:'EB Garamond',Georgia,serif; font-size:18px; line-height:1.55;
+    padding:env(safe-area-inset-top) 0 env(safe-area-inset-bottom);
+  }
+  .wrap{max-width:520px;margin:0 auto;padding:0 20px 56px}
+
+  header{text-align:center;padding:44px 12px 26px}
+  .eyebrow{font-size:12px;letter-spacing:.32em;color:var(--plum);text-transform:uppercase;font-weight:500}
+  h1{font-family:'Playfair Display',serif;font-weight:600;font-size:clamp(34px,9vw,44px);margin:10px 0 6px;line-height:1.1}
+  .tagline{font-style:italic;color:var(--plum);font-size:19px}
+  .rule{display:flex;align-items:center;gap:10px;justify-content:center;margin:20px auto 0;max-width:220px}
+  .rule::before,.rule::after{content:"";flex:1;height:1px;background:var(--sage)}
+  .rule span{width:5px;height:5px;border-radius:50%;background:var(--sage)}
+
+  .card{
+    background:var(--card);border:1px solid var(--sage);border-radius:14px;
+    box-shadow:inset 0 0 0 3px var(--cream), inset 0 0 0 4px var(--sage-soft);
+    padding:24px 20px;margin-top:26px;
+  }
+  .dish-head{display:flex;justify-content:space-between;align-items:baseline;gap:12px}
+  .dish-head h2{font-family:'Playfair Display',serif;font-weight:600;font-size:28px}
+  .price{font-family:'Playfair Display',serif;font-weight:600;font-size:26px;color:var(--plum)}
+  .desc{margin-top:12px}
+  .pill{
+    display:inline-block;background:var(--sage-soft);border-radius:999px;
+    padding:6px 14px;font-size:15px;margin-top:14px;
+  }
+  .allergens{margin-top:12px;display:flex;flex-wrap:wrap;gap:8px}
+  .allergen{
+    background:var(--plum-soft);color:var(--plum);border-radius:999px;
+    padding:5px 12px;font-size:14px;letter-spacing:.02em;
   }
 
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-
-  body {
-    font-family: 'DM Sans', sans-serif;
-    background: var(--cream);
-    color: var(--text);
-    min-height: 100vh;
+  .qty{
+    display:flex;align-items:center;justify-content:space-between;
+    background:var(--sage-soft);border-radius:12px;padding:14px 16px;margin-top:20px;
   }
-
-  /* Header */
-  .header {
-    background: linear-gradient(170deg, var(--night) 0%, var(--palm-dark) 50%, var(--palm) 100%);
-    padding: 3rem 1.5rem 2.5rem;
-    text-align: center;
-    position: relative;
-    overflow: hidden;
+  .qty span{font-size:17px}
+  .qty-controls{display:flex;align-items:center;gap:16px}
+  .qty-btn{
+    width:44px;height:44px;border-radius:50%;border:1.5px solid var(--ink);
+    background:none;color:var(--ink);font-size:24px;line-height:1;cursor:pointer;
+    font-family:'EB Garamond',serif;
   }
+  .qty-btn:active{background:var(--ink);color:var(--cream)}
+  #qty-value{font-family:'Playfair Display',serif;font-size:24px;min-width:28px;text-align:center}
 
-  .header::after {
-    content: '';
-    position: absolute;
-    bottom: -2px;
-    left: 0;
-    right: 0;
-    height: 30px;
-    background: var(--cream);
-    border-radius: 50% 50% 0 0 / 100% 100% 0 0;
+  .total{display:flex;justify-content:space-between;align-items:baseline;margin-top:20px;padding-top:16px;border-top:1px solid var(--sage-soft)}
+  .total .label{font-size:11px;letter-spacing:.26em;text-transform:uppercase;color:var(--plum);font-weight:500}
+  #total-amount{font-family:'Playfair Display',serif;font-weight:600;font-size:30px}
+
+  .btn{
+    display:block;width:100%;text-align:center;background:var(--ink);color:var(--cream);
+    border:none;font-family:'EB Garamond',serif;font-size:18px;letter-spacing:.06em;
+    padding:16px 18px;border-radius:12px;margin-top:20px;cursor:pointer;
   }
+  .btn:disabled{opacity:.7}
+  .pay-note{text-align:center;font-style:italic;color:var(--plum);font-size:15px;margin-top:10px}
 
-  .header-emoji {
-    font-size: 2.5rem;
-    display: block;
-    margin-bottom: 0.5rem;
-    animation: gentleBob 3s ease-in-out infinite;
-  }
+  .how{margin-top:16px}
+  .how p{margin-bottom:10px}
+  .how .label{font-size:11px;letter-spacing:.26em;text-transform:uppercase;color:var(--plum);font-weight:500;display:block;margin-bottom:4px}
 
-  @keyframes gentleBob {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-6px); }
-  }
+  .back{display:block;text-align:center;margin-top:28px;color:var(--plum);font-style:italic;text-decoration:none;font-size:17px}
 
-  .header h1 {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.8rem;
-    color: var(--cream);
-    font-weight: 700;
-    margin-bottom: 0.25rem;
-  }
-
-  .header-sub {
-    font-size: 0.85rem;
-    color: rgba(255,253,248,0.6);
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-  }
-
-  /* Main Content */
-  .content {
-    max-width: 480px;
-    margin: 0 auto;
-    padding: 1.5rem;
-  }
-
-  /* Menu Card */
-  .menu-card {
-    background: white;
-    border-radius: 20px;
-    overflow: hidden;
-    box-shadow: 0 4px 30px rgba(0,0,0,0.06);
-    border: 1px solid rgba(201, 169, 110, 0.15);
-    margin-bottom: 1.5rem;
-  }
-
-  .menu-image {
-    width: 100%;
-    height: 220px;
-    background: linear-gradient(135deg, var(--sunset) 0%, var(--sunset-glow) 50%, var(--gold) 100%);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .menu-image::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0; bottom: 0;
-    background: radial-gradient(circle at 30% 70%, rgba(255,255,255,0.15) 0%, transparent 50%);
-  }
-
-  .dish-emoji {
-    font-size: 5rem;
-    z-index: 1;
-    filter: drop-shadow(0 4px 8px rgba(0,0,0,0.15));
-  }
-
-  .menu-badge {
-    position: absolute;
-    top: 16px;
-    right: 16px;
-    background: var(--palm);
-    color: var(--cream);
-    font-size: 0.7rem;
-    font-weight: 600;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    padding: 6px 14px;
-    border-radius: 100px;
-  }
-
-  .menu-body {
-    padding: 1.5rem;
-  }
-
-  .menu-title-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    margin-bottom: 0.75rem;
-  }
-
-  .menu-title {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.5rem;
-    color: var(--palm-dark);
-    font-weight: 700;
-  }
-
-  .menu-price {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.5rem;
-    color: var(--sunset);
-    font-weight: 700;
-    white-space: nowrap;
-  }
-
-  .menu-desc {
-    font-size: 0.95rem;
-    color: var(--text-light);
-    line-height: 1.7;
-    margin-bottom: 1rem;
-  }
-
-  .allergens {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-    margin-bottom: 1.25rem;
-  }
-
-  .allergen-tag {
-    font-size: 0.75rem;
-    font-weight: 500;
-    color: var(--red);
-    background: rgba(217, 79, 79, 0.08);
-    border: 1px solid rgba(217, 79, 79, 0.15);
-    border-radius: 100px;
-    padding: 4px 12px;
-  }
-
-  /* Quantity Selector */
-  .quantity-section {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    background: var(--sand-light);
-    border-radius: 14px;
-    padding: 1rem 1.25rem;
-    margin-bottom: 1rem;
-  }
-
-  .quantity-label {
-    font-size: 0.9rem;
-    font-weight: 500;
-    color: var(--text);
-  }
-
-  .quantity-controls {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-  }
-
-  .qty-btn {
-    width: 36px;
-    height: 36px;
-    border-radius: 50%;
-    border: 2px solid var(--palm);
-    background: transparent;
-    color: var(--palm);
-    font-size: 1.2rem;
-    font-weight: 600;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.2s ease;
-  }
-
-  .qty-btn:hover {
-    background: var(--palm);
-    color: var(--cream);
-  }
-
-  .qty-btn:disabled {
-    opacity: 0.3;
-    cursor: not-allowed;
-  }
-
-  .qty-btn:disabled:hover {
-    background: transparent;
-    color: var(--palm);
-  }
-
-  .qty-value {
-    font-size: 1.25rem;
-    font-weight: 600;
-    color: var(--palm-dark);
-    min-width: 30px;
-    text-align: center;
-  }
-
-  /* Order Total */
-  .order-total {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1rem 0;
-    border-top: 1px solid rgba(0,0,0,0.06);
-    margin-bottom: 1rem;
-  }
-
-  .total-label {
-    font-size: 1rem;
-    font-weight: 500;
-    color: var(--text-light);
-  }
-
-  .total-amount {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.4rem;
-    font-weight: 700;
-    color: var(--palm-dark);
-  }
-
-  /* Order Button */
-  .order-btn {
-    width: 100%;
-    padding: 1rem;
-    background: var(--palm);
-    color: var(--cream);
-    border: none;
-    border-radius: 14px;
-    font-family: 'DM Sans', sans-serif;
-    font-size: 1rem;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    letter-spacing: 0.03em;
-  }
-
-  .order-btn:hover {
-    background: var(--palm-dark);
-    transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(45, 90, 61, 0.25);
-  }
-
-  .order-btn:disabled {
-    background: #ccc;
-    cursor: not-allowed;
-    transform: none;
-    box-shadow: none;
-  }
-
-  /* Coming Soon Overlay */
-  .coming-soon-banner {
-    background: linear-gradient(135deg, var(--sunset), var(--sunset-glow));
-    color: white;
-    text-align: center;
-    padding: 1rem;
-    border-radius: 14px;
-    margin-bottom: 1.5rem;
-  }
-
-  .coming-soon-banner h3 {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.1rem;
-    margin-bottom: 0.25rem;
-  }
-
-  .coming-soon-banner p {
-    font-size: 0.85rem;
-    opacity: 0.9;
-  }
-
-  /* Info Note */
-  .info-note {
-    text-align: center;
-    padding: 1.5rem;
-    font-size: 0.85rem;
-    color: var(--text-light);
-    line-height: 1.6;
-  }
-
-  .info-note a {
-    color: var(--sunset);
-    text-decoration: none;
-    font-weight: 500;
-  }
-
-  /* Success State */
-  .order-success {
-    display: none;
-    text-align: center;
-    padding: 2rem;
-  }
-
-  .order-success.show { display: block; }
-
-  .order-success .check-icon {
-    font-size: 3.5rem;
-    display: block;
-    margin-bottom: 1rem;
-  }
-
-  .order-success h2 {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.5rem;
-    color: var(--palm-dark);
-    margin-bottom: 0.5rem;
-  }
-
-  .order-success p {
-    font-size: 0.95rem;
-    color: var(--text-light);
-    line-height: 1.6;
-  }
-
-  /* Footer */
-  .footer {
-    text-align: center;
-    padding: 2rem 1.5rem;
-    font-size: 0.75rem;
-    color: var(--text-light);
-  }
-
-  .footer a {
-    color: var(--sunset);
-    text-decoration: none;
-  }
-
-  /* Prep time indicator */
-  .prep-time {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.4rem;
-    font-size: 0.8rem;
-    color: var(--text-light);
-    background: var(--sand-light);
-    padding: 4px 12px;
-    border-radius: 100px;
-    margin-bottom: 1rem;
-  }
+  footer{text-align:center;margin-top:40px}
+  footer .fr{color:var(--sage);font-size:24px;letter-spacing:.4em}
+  footer .id{font-style:italic;color:var(--plum);margin-top:10px}
+  footer .hosts{font-size:13px;letter-spacing:.28em;margin-top:4px;text-transform:uppercase}
+  a:focus-visible,button:focus-visible{outline:2px solid var(--plum);outline-offset:3px;border-radius:6px}
 </style>
 </head>
 <body>
+<div class="wrap">
 
-<!-- Header -->
-<div class="header">
-  <span class="header-emoji">🔥🥢</span>
-  <h1>Poolside Eats</h1>
-  <p class="header-sub">Tropical Pool Oasis</p>
-</div>
+  <header>
+    <div class="eyebrow">Tropical Pool Oasis</div>
+    <h1>Poolside Eats</h1>
+    <div class="tagline">island flavors, delivered to your cabana</div>
+    <div class="rule"><span></span></div>
+  </header>
 
-<!-- Content -->
-<div class="content">
-
-  <!-- Live! -->
-
-  <!-- Menu Card -->
-  <div class="menu-card" id="menu-card">
-    <div class="menu-image">
-      <span class="dish-emoji">🔥🥢</span>
-      <span class="menu-badge">Homemade</span>
+  <div class="card">
+    <div class="dish-head">
+      <h2>Mi Goreng</h2>
+      <div class="price">$10</div>
+    </div>
+    <p class="desc">Authentic Indonesian stir-fried noodles made fresh by your hosts. Sweet, savory, and a little spicy — topped with a fried egg, crispy onions, and cool tomato &amp; cucumber. A taste of the islands right here in Tucson.</p>
+    <div class="pill">⏱ Fresh made to order · about fifteen minutes</div>
+    <div class="allergens">
+      <span class="allergen">contains eggs</span>
+      <span class="allergen">contains soy</span>
+      <span class="allergen">contains gluten</span>
     </div>
 
-    <div class="menu-body">
-      <div class="menu-title-row">
-        <h2 class="menu-title">Mi Goreng</h2>
-        <span class="menu-price">$10</span>
+    <div class="qty">
+      <span>How many plates?</span>
+      <div class="qty-controls">
+        <button class="qty-btn" onclick="changeQty(-1)" aria-label="Fewer plates">−</button>
+        <span id="qty-value">1</span>
+        <button class="qty-btn" onclick="changeQty(1)" aria-label="More plates">+</button>
       </div>
-
-      <p class="menu-desc">Authentic Indonesian stir-fried noodles made fresh poolside by your host. Sweet, savory, and a little spicy — a taste of the islands right here in Tucson.</p>
-
-      <div class="prep-time">
-        <span>⏱️</span> Fresh made to order · ~15 min
-      </div>
-
-      <div class="allergens">
-        <span class="allergen-tag">⚠️ Eggs</span>
-        <span class="allergen-tag">⚠️ Soy</span>
-        <span class="allergen-tag">⚠️ Gluten</span>
-      </div>
-
-      <!-- Quantity -->
-      <div class="quantity-section">
-        <span class="quantity-label">How many plates?</span>
-        <div class="quantity-controls">
-          <button class="qty-btn" id="qty-minus" onclick="updateQty(-1)" disabled>−</button>
-          <span class="qty-value" id="qty-value">1</span>
-          <button class="qty-btn" id="qty-plus" onclick="updateQty(1)">+</button>
-        </div>
-      </div>
-
-      <!-- Total -->
-      <div class="order-total">
-        <span class="total-label">Total</span>
-        <span class="total-amount" id="total-amount">$10.00</span>
-      </div>
-
-      <button class="order-btn" id="order-btn" onclick="placeOrder()">
-        Order Now — Pay with Stripe
-      </button>
     </div>
+
+    <div class="total">
+      <span class="label">Total</span>
+      <span id="total-amount">$10.00</span>
+    </div>
+
+    <button class="btn" id="order-btn" onclick="placeOrder()">Order now — pay with card</button>
+    <p class="pay-note">secure checkout by Stripe · cash also accepted, just ask</p>
   </div>
 
-  <!-- Order Success (hidden) -->
-  <div class="order-success" id="order-success">
-    <span class="check-icon">🎉</span>
-    <h2>Order Placed!</h2>
-    <p>Your Mi Goreng is being prepared fresh. Michael will bring it out to the pool area in about 15 minutes. Enjoy!</p>
+  <div class="card how">
+    <p><span class="label">How it works</span>Place your order here, and we'll bring it out to your cabana — fresh from the wok, no need to leave the pool.</p>
+    <p><span class="label">Questions</span>Message us in the Swimply app anytime.</p>
   </div>
 
-  <!-- Info -->
-  <div class="info-note">
-    <p>Made with love by your host Michael 🌴<br>
-    <a href="https://tropical-pool-oasis.vercel.app">← Back to Guest Info</a></p>
-  </div>
+  <a class="back" href="index.html">← back to Oasis Connect</a>
 
-</div>
+  <footer>
+    <div class="fr">🌿 🍜 🌿</div>
+    <div class="id">selamat makan — enjoy your meal</div>
+    <div class="hosts">Novi &amp; Mike</div>
+  </footer>
 
-<!-- Footer -->
-<div class="footer">
-  <p>🌴 Tropical Pool Oasis · Tucson, AZ</p>
-  <p style="margin-top: 4px;">Hosted on <a href="https://swimply.com">Swimply</a></p>
 </div>
 
 <script>
   const PRICE = 10;
+  const STRIPE_LINK = 'https://buy.stripe.com/5kQ3cuful2YP1OKe9LeIw00';
   let quantity = 1;
 
-  function updateQty(change) {
+  function changeQty(change){
     quantity = Math.max(1, Math.min(20, quantity + change));
     document.getElementById('qty-value').textContent = quantity;
     document.getElementById('total-amount').textContent = '$' + (quantity * PRICE).toFixed(2);
-    document.getElementById('qty-minus').disabled = quantity <= 1;
-    document.getElementById('qty-plus').disabled = quantity >= 20;
   }
 
-  const STRIPE_LINK = 'https://buy.stripe.com/5kQ3cuful2YP1OKe9LeIw00';
-
-  function placeOrder() {
+  function placeOrder(){
     const btn = document.getElementById('order-btn');
-    btn.textContent = 'Redirecting to payment...';
+    btn.textContent = 'Taking you to checkout…';
     btn.disabled = true;
-
-    // Stripe payment links support ?quantity= parameter
-    const url = STRIPE_LINK + '?quantity=' + quantity;
-    window.location.href = url;
+    window.location.href = STRIPE_LINK + '?quantity=' + quantity;
   }
 </script>
-
 </body>
 </html>
