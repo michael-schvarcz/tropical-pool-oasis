@@ -130,6 +130,8 @@
     <div class="rule"><span></span></div>
   </header>
 
+  <div id="announce-banner" style="display:none;background:var(--plum);color:var(--cream);border-radius:14px;padding:14px 18px;text-align:center;font-style:italic;margin-top:4px"></div>
+
   <!-- ============ QUICK ACTIONS ============ -->
   <div class="grid">
     <a class="tile" href="#wifi" onclick="openSec('wifi')">
@@ -266,6 +268,11 @@
   fetch('status.json?t=' + Date.now())
     .then(r => r.json())
     .then(s => {
+      if (s.announcement) {
+        const a = document.getElementById('announce-banner');
+        a.textContent = s.announcement;
+        a.style.display = 'block';
+      }
       if (!s.eatsOpen) {
         document.getElementById('eats-tile-note').textContent = 'not available today';
         const note = document.getElementById('eats-closed-note');
