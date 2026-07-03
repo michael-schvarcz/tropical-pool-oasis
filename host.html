@@ -70,6 +70,7 @@
       </div>
       <div style="margin-top:16px">
         <span class="label">Message guests see when closed</span>
+        <div id="presets" style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:10px"></div>
         <textarea id="closed-msg"></textarea>
       </div>
     </div>
@@ -93,6 +94,24 @@
   let sha = null, state = {eatsOpen: true, closedMessage: '', announcement: ''};
 
   const $ = id => document.getElementById(id);
+
+  const PRESETS = [
+    ["Taking a break", "Our poolside kitchen is taking a break today \u2014 Poolside Eats will be back for your next visit! \ud83c\udf34"],
+    ["Back later today", "The kitchen opens later today \u2014 Poolside Eats will be ready for your evening swim! \ud83c\udf5c"],
+    ["Grill's all yours", "Our poolside kitchen is closed today, but the grill is all yours \u2014 fire it up and enjoy! \ud83c\udf34"],
+    ["Sold out", "Tonight's noodles are sold out! \ud83c\udf5c Poolside Eats returns fresh for your next visit."]
+  ];
+  function buildPresets(){
+    const box = $('presets');
+    PRESETS.forEach(([label, text]) => {
+      const b = document.createElement('button');
+      b.textContent = label;
+      b.style.cssText = 'font-family:EB Garamond,serif;font-size:14px;background:var(--sage-soft);color:var(--ink);border:1px solid var(--sage);border-radius:999px;padding:7px 14px;cursor:pointer';
+      b.onclick = () => { $('closed-msg').value = text; $('status-msg').textContent = 'Message selected \u2014 tap Publish'; };
+      box.appendChild(b);
+    });
+  }
+  buildPresets();
   const token = () => localStorage.getItem('oasis_gh_token');
 
   function saveToken(){
