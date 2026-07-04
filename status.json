@@ -1,5 +1,5 @@
 {
-  "eatsOpen": false,
-  "closedMessage": "Our poolside kitchen is taking a break today — Poolside Eats will be back soon!",
+  "eatsOpen": true,
+  "closedMessage": "",
   "announcement": ""
 }
